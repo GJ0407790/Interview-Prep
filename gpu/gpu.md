@@ -1,11 +1,43 @@
-## GPU Architecture
-
-https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html
-https://enccs.github.io/openmp-gpu/gpu-architecture/
-https://fabiensanglard.net/cuda/
-https://www.megware.com/fileadmin/user_upload/LandingPage%20NVIDIA/nvidia-ampere-architecture-whitepaper.pdf
+## GPU vs CPU Architecture
 
 ![alt text](../images/cpu_gpu.png)
+
+### CPU: Latency Oriented Design
+- High clock frequency.
+- Large caches per core
+    - Convert long latency memory accesses to short latency cache accesses
+- Sophisticated control
+    - Complex branch predictor
+    - Data forwarding for reduced data latency
+    - Out of order execution
+- Powerful ALU
+
+### GPU: Throughput Oriented Design
+- Moderate clock frequency
+- Simple control
+    - No branch prediction
+    - No data forwarding
+- Relies on massive number of threads to hide latencies.
+
+### GPU in details
+
+![alt text](../images/a100.png)
+
+- Context switch happens in hardware, i.e. state is stored in register files (including PC).
+- One instruction can control 32 threads (a warp)
+    - Reduce the overhead of fetching and decoding.
+    - Extra space for ALUs
+- Warp scheduler select the next warp that is ready to run.
+- Dispatch unit issues instruction for the selected warp by warp scheduler.
+
+
+> Reference:
+> - https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html
+> - https://enccs.github.io/openmp-gpu/gpu-architecture/
+> - https://fabiensanglard.net/cuda/
+> - https://www.megware.com/fileadmin/user_upload/LandingPage%20NVIDIA/nvidia-ampere-architecture-whitepaper.pdf
+
+## GPU Async Execution
 
 ## How does processes communicate?
 - Relies on IPC to achieve inter process communication.
