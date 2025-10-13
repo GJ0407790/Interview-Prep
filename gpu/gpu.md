@@ -5,6 +5,8 @@ https://enccs.github.io/openmp-gpu/gpu-architecture/
 https://fabiensanglard.net/cuda/
 https://www.megware.com/fileadmin/user_upload/LandingPage%20NVIDIA/nvidia-ampere-architecture-whitepaper.pdf
 
+![alt text](../images/cpu_gpu.png)
+
 ## How does processes communicate?
 - Relies on IPC to achieve inter process communication.
 
