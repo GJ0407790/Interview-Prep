@@ -39,6 +39,15 @@
 
 ## GPU Async Execution
 
+- CUDA stream is a sequence of commands, e.g. kernels and memory copies, that is sent to GPU.
+    - Note that for `cudaMemcpyAsync`, pinned memory must be used otherwise will result in synchronous memcpy.
+    - There are 1 kernel engine and 2 copy engines (HtoD and DtoH).
+- Within stream, commands are processed in order. There is no guaranteed order between streams.
+    - Synchronization between streams can be achieved using **CUDA events**.
+- Streams map to hardware queue in practice.
+    - If multiple streams are mapped to the same hardware queue, the operation issue order matters.
+    - Hardware scheduler pull tasks from hardware queues whenever copy/kernel engine is idle.
+
 ## How does processes communicate?
 - Relies on IPC to achieve inter process communication.
 
